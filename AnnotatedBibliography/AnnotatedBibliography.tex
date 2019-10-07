@@ -1,0 +1,43 @@
+%-----------------------------------------------------------------------------%
+%                                    SETTINGS                                 %
+%-----------------------------------------------------------------------------%
+\documentclass[a4paper, 10pt]{report}
+
+\usepackage{fontspec}
+\setmainfont[ItalicFont = {Segoe UI Semilight Italic}]{Segoe UI}
+
+\usepackage[english]{babel}
+
+\input{Settings/packages}
+\input{Settings/page}
+
+
+%-----------------------------------------------------------------------------%
+%                                     HEADER                                  %
+%-----------------------------------------------------------------------------%
+\title{\textbf{TITLE}	\\
+	   \vspace{5mm}
+       \Large SUB-TITLE				\\
+       \vspace{10mm}
+       \large [Annotated Bibliography]}
+
+\vspace{25mm}
+\author{Inês Pereira} 
+
+
+%-----------------------------------------------------------------------------%
+%                                    DOCUMENT                                 %
+%-----------------------------------------------------------------------------%
+\begin{document}
+
+
+\maketitle
+
+
+\input{Sections/00_layout}
+
+
+\bibliographystyle{apalike}
+\nobibliography{Bibliography/Bibliography}
+
+\end{document}
