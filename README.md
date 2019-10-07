@@ -5,14 +5,11 @@ Here you may find __LaTeX Layouts__ for the following documents:
 - Master Thesis
 
 # Build
+```
 luatex
-
 bibtex
-
 makeindex
-
 luatex
-
 luatex
-
 pdf view
+```
