@@ -1,0 +1,75 @@
+%--------------------------------- Settings ----------------------------------%
+\newcommand{\coverThesis}{Thesis to obtain the Master of Science Degree in}
+\newcommand{\coverSupervisors}{Supervisor(s)}
+\newcommand{\coverExaminationCommittee}{Examination Committee} 
+\newcommand{\coverChairperson}{Chairperson}
+\newcommand{\coverSupervisor}{Supervisor}
+\newcommand{\coverMemberCommittee}{Member of the Committee}
+
+\addto\captionsenglish{\renewcommand{\coverThesis}{Thesis to obtain the Master of Science Degree in}}
+\addto\captionsenglish{\renewcommand{\coverSupervisors}{Supervisor(s)}}
+\addto\captionsenglish{\renewcommand{\coverExaminationCommittee}{Examination Committee}}
+\addto\captionsenglish{\renewcommand{\coverChairperson}{Chairperson}}
+\addto\captionsenglish{\renewcommand{\coverSupervisor}{Supervisor}}
+\addto\captionsenglish{\renewcommand{\coverMemberCommittee}{Member of the Committee}}
+
+
+\def\FontLn{% 16 pt normal
+  \fontsize{16pt}{16pt}}
+\def\FontLb{% 16 pt bold
+  \fontsize{16pt}{16pt}\bfseries}
+\def\FontMn{% 14 pt normal
+  \fontsize{14pt}{14pt}}
+\def\FontMb{% 14 pt bold
+  \fontsize{14pt}{14pt}\bfseries}
+\def\FontSn{% 12 pt normal
+  \fontsize{12pt}{12pt}}
+
+
+
+%------------------------------- Front Cover ---------------------------------%
+\thispagestyle{empty}
+
+%IST Logo
+\includegraphics[bb=9.5cm 11cm 0cm 0cm,scale=0.29]{Figures/IST_A_CMYK_POS.pdf}
+
+
+\begin{center}
+
+%Figure --> height = 50 mm
+\vspace{2.5cm}
+\includegraphics[height=50mm]{Figures/FrontCoverFigure}
+
+\vspace{1cm}
+{\FontLb TITLE} \\
+\vspace{0.2cm}
+{\FontMn SUBTITLE} \\
+\vspace{1.9cm}
+
+%\vspace{2.6cm}
+{\FontMb FULL NAME} \\
+\vspace{2.0cm}
+
+{\FontSn \coverThesis} \\
+\vspace{0.3cm}
+{\FontLb Architecture} \\
+\vspace{1.0cm}
+{\FontSn %
+\begin{tabular}{ll}
+ \coverSupervisors: & Prof. Dr. FULL NAME \\
+\end{tabular} } \\
+\vspace{1.0cm}
+{\FontMb \coverExaminationCommittee} \\
+\vspace{0.3cm}
+{\FontSn %
+\begin{tabular}{c}
+\coverChairperson:     Prof. Dr. FULL NAME	\\
+\coverSupervisor:      Prof. Dr. FULL NAME	\\
+\coverMemberCommittee: Prof. Dr. FULL NAME
+\end{tabular} } \\
+\vspace{1.5cm}
+{\FontMb MONTH YEAR} \\
+
+
+\end{center}
+

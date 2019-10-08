@@ -1,0 +1,41 @@
+\chapter{CHAPTER TITLE}
+\chapquote{"this is a quote"}
+{Name, 2019}{}
+
+\section{SECTION TITLE}
+\citep{pereira19}
+\blindtext
+
+\section{SECTION TITLE}
+\blindtext
+\ref{fig:figure-a}
+
+\marginpar{ 
+   \includegraphics[width=\marginparwidth]{example-image-a}
+   \captionof{figure}[caption in list of figure]{caption in page}
+   \label{fig:figure-a}
+}
+
+\section{SECTION TITLE}
+\blindtext
+\ref{fig:figure-b}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth]{example-image-b}
+  \caption[caption in list of figure]{caption in page}
+  \label{fig:figure-b}
+\end{figure}
+
+\subsection{SUBSECTION TITLE}
+\blindtext
+\ref{fig:figure-a-2}
+
+\begin{figure}[!]
+  \begin{addmargin*}[0pt]{-\marginparsep-\marginparwidth}
+  \centering
+  \includegraphics[width=\linewidth]{example-image-a}
+  \caption[caption in list of figure]{caption in page}
+  \label{fig:figure-a-2}
+  \end{addmargin*}
+\end{figure}

@@ -1,0 +1,124 @@
+%-----------------------------------------------------------------------------%
+%                                    SETTINGS                                 %
+%-----------------------------------------------------------------------------%
+\documentclass[a4paper, 10pt]{book}
+
+\usepackage{fontspec}
+\setmainfont[ItalicFont = {Segoe UI Semilight Italic}]{Segoe UI}
+
+\usepackage[english]{babel}
+
+\input{settings/packages}
+\input{settings/page}
+\input{settings/extras_thesis}
+
+\usepackage[textwidth=4cm, textsize=small]{todonotes}
+%\usepackage[disable]{todonotes}
+
+\allowdisplaybreaks
+
+\usepackage{rotating}
+
+%-----------------------------------------------------------------------------%
+%                                    DOCUMENT                                 %
+%-----------------------------------------------------------------------------%
+\begin{document}
+
+\pagestyle{plain}
+
+\newgeometry{top = 1.75cm, left = 2.5cm, right = 2.5cm, bottom = 2.5cm}
+
+\input{Chapters/FrontCover}
+\newpage{\pagestyle{empty}\cleardoublepage}
+
+
+\pagenumbering{roman}
+
+\makeatletter\@openrightfalse
+
+\input{Chapters/Declaration}
+\cleardoublepage
+\input{Chapters/Acknowledgments}
+\input{Chapters/Abstract}
+\input{Chapters/Resumo}
+\input{Chapters/Contributions}
+
+\tableofcontents
+%OPTION 1 - IN THE SAME PAGE
+\listoffigures
+\begingroup
+   \let\cleardoublepage\relax
+   \let\clearpage\relax
+   \listoftables
+\endgroup
+%OPTION 2 - IN DIFFERENT PAGES
+%\listoffigures
+%\listoftables
+
+\input{Chapters/Abbreviations}
+\cleardoublepage
+
+\@openrighttrue\makeatother
+
+
+%-----------------------------------------------------------------------------%
+\restoregeometry
+
+\pagenumbering{arabic}
+
+\makeatletter\@openrightfalse
+  
+  
+%------------------------------- INTRODUCTION --------------------------------%
+\cleardoublepage
+\newgeometry{top = 1.75cm, left = 2.5cm, right = 2cm, bottom = 2.5cm}
+\AddToShipoutPicture*{\BackgroundPic}
+\part*{\uppercase{Introduction}}
+\restoregeometry
+
+\input{Chapters/0_Introduction}
+
+
+%---------------------------- PART I - BACKGROUND ----------------------------%
+\cleardoublepage
+\newgeometry{top = 1.75cm, left = 2.5cm, right = 2cm, bottom = 2.5cm}
+\AddToShipoutPicture*{\BackgroundPic}
+\part{\uppercase{Background}}
+\restoregeometry 
+
+\input{Chapters/0_0_ChapterTemplate}
+
+
+%---------------------------- PART II - EVALUATION ----------------------------%
+\cleardoublepage
+\newgeometry{top = 1.75cm, left = 2.5cm, right = 2cm, bottom = 2.5cm}
+\AddToShipoutPicture*{\BackgroundPic}
+\part{\uppercase{EVALUATION}}
+\restoregeometry 
+
+\input{Chapters/0_0_ChapterTemplate}
+\input{Chapters/0_0_ChapterTemplate}
+
+
+
+%------------------------------- CONCLUSIONS ---------------------------------%
+\cleardoublepage
+\newgeometry{top = 1.75cm, left = 2.5cm, right = 2.5cm, bottom = 2.5cm}
+\AddToShipoutPicture*{\BackgroundPic}						
+\part*{\uppercase{Conclusion}}
+\restoregeometry 
+
+\input{Chapters/3_0_Conclusion}
+\@openrighttrue\makeatother
+
+
+%------------------------------- BIBLIOGRAPHY --------------------------------%
+\newgeometry{top = 1.75cm, left = 2.5cm, right = 2.5cm, bottom = 2.5cm}
+\bibliographystyle{apalike}
+\bibliography{Bibliography/Bibliography}
+
+
+%------------------------------- ATTACHMENTS ---------------------------------%
+
+
+\end{document}

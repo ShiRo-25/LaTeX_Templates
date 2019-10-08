@@ -1,0 +1,161 @@
+%\usepackage[size=footnotesize,labelfont=bf,justification=raggedright]{caption}
+\usepackage[size=footnotesize,labelfont=bf]{caption}
+
+\newcommand{\cm}[1]{\ignorespaces}
+
+\usepackage{chngcntr}
+\counterwithin{figure}{chapter}
+
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+
+
+%---------------------------------- QUOTES -----------------------------------%
+\newcommand{\chapquote}[3]
+	{\begin{quotation} \centering \color[RGB]{80, 80, 80} \textit{#1} \end{quotation} 
+	\begin{flushright} \color[RGB]{80, 80, 80} - #2 \textit{#3}\end{flushright}
+	\vspace{1pc}
+}
+
+%To change quote font use this
+%\fontspec{Baskervald ADF Std} 
+
+
+%-------------------------------- FOOTNOTES ----------------------------------%
+\makeatletter
+\newcommand\footnoteref[1]{\protected@xdef\@thefnmark{\ref{#1}}\@footnotemark}
+\makeatother
+
+
+%---------------------------- CHAPTERS PROPERTIES ----------------------------%
+\usepackage{xpatch}
+
+
+\makeatletter
+
+\xpatchcmd{\@makeschapterhead}{%
+  \Huge \bfseries  #1\par\nobreak%
+}{%
+  \Huge\bfseries\scshape\color[RGB]{50, 50, 50}\centering #1\par\nobreak%
+}{\typeout{Patched makeschapterhead}}{\typeout{patching of @makeschapterhead failed}}
+
+
+\xpatchcmd{\@makechapterhead}{%
+  \huge\bfseries \@chapapp\space \thechapter
+}{%
+  \vspace{0.7cm}
+  \Large\scshape\color[RGB]{50, 50, 50}\centering \MakeUppercase{\fontspec{Segoe UI Semibold}\@chapapp\space \thechapter}
+  \vspace{-0.7cm}
+}{\typeout{Patched @makechapterhead}}{\typeout{Patching of @makechapterhead failed}}
+
+\makeatother
+
+
+%---------------------------- SECTIONS PROPERTIES ----------------------------%
+\usepackage{titlesec}
+
+\titleformat*{\section}{\Large\bfseries\scshape\color[RGB]{50, 50, 50}}\titleformat*{\subsection}{\large\bfseries\scshape\color[RGB]{50, 50, 50}}
+\titleformat*{\subsubsection}{\bfseries\scshape}
+
+
+%----------------------------- PARTS PROPERTIES ------------------------------%
+\titleformat{\part}%[display]
+  {\thispagestyle{empty} \filleft \vspace{17cm} \normalfont \fontsize{36}{36} \bfseries
+ % \scshape 
+  \color[RGB]{130, 130, 130}}
+  {\filleft \thepart}{0.75cm}{}
+
+
+%------------------------------ CHAPTERS ON LOFT -----------------------------%
+\usepackage{etoolbox}
+
+\makeatletter
+ 
+\newcommand{\thechaptername}{}
+\newcounter{chapterF@last}
+\newcounter{chapterT@last}
+ 
+\renewcommand{\chaptermark}[1]
+              {%
+                \markboth{#1}{}%
+                \renewcommand{\thechaptername}{#1}%
+              }
+ 
+%LIST OF FIGURES 
+\pretocmd{\figure}
+          {%
+            \ifnumequal%
+                {\value{chapter}}%
+                {\value{chapterF@last}}%
+                {}%  already added
+                {%
+                  \addtocontents{lof}
+                                {\protect\numberline{\bfseries\thechapter\quad\thechaptername}}%
+                  \setcounter{chapterF@last}{\value{chapter}}%
+                }%
+          }
+          {}
+          {}
+          
+\pretocmd{\marginpar}
+          {%
+            \ifnumequal%
+                {\value{chapter}}%
+                {\value{chapterF@last}}%
+                {}%  already added
+                {%
+                  \addtocontents{lof}
+                                {\protect\numberline{\bfseries\thechapter\quad\thechaptername}}%
+                  \setcounter{chapterF@last}{\value{chapter}}%
+                }%
+          }
+          {}
+          {}
+ 
+%LIST OF TABLES          
+\pretocmd{\table}
+          {%
+            \ifnumequal%
+                {\value{chapter}}%
+                {\value{chapterT@last}}%
+                {}%  already added
+                {%
+                  \addtocontents{lot}%
+                                {\protect\numberline{\bfseries\thechapter\quad\thechaptername}}%             
+                  \setcounter{chapterT@last}{\value{chapter}}%
+                }%
+          }
+          {}
+          {}        
+
+\makeatother
+
+
+%------------------------------ PAGE NUMBER COLOR ----------------------------%
+\makeatletter
+\patchcmd{\ps@plain}{\thepage}{\textcolor[RGB]{130, 130, 130}{\thepage}}{}{}
+\makeatother
+
+
+%------------------------------ PARTS BACKGROUND -----------------------------%
+\usepackage{eso-pic}
+
+\newcommand\BackgroundPic{
+    \put(0,0){
+    \parbox[b][\paperheight]{\paperwidth}{%
+    \vfill
+    \centering
+    \includegraphics[width=\paperwidth,height=\paperheight]{Figures/background}
+    \vfill
+    }}}
+    
+     
+%-------------------------------- BIBLIO IN TOC ------------------------------%  
+\apptocmd{\thebibliography}{\csname phantomsection\endcsname\addcontentsline{toc}{part}{\uppercase{\bibname}}}{}{}
+
+
+%------------------------------- ABREV IN BIBLIO -----------------------------% 
+\newif\ifabbreviation
+\pretocmd{\thebibliography}{\abbreviationfalse}{}{}
+\AtBeginDocument{\abbreviationtrue}
+\DeclareRobustCommand\acroauthor[2]{%
+  \ifabbreviation #2\else #1 (\mbox{#2})\fi}
