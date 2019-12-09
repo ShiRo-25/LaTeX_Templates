@@ -1,46 +1,61 @@
 %-----------------------------------------------------------------------------%
 %                                    SETTINGS                                 %
 %-----------------------------------------------------------------------------%
-\documentclass[a4paper, 9pt]{article}
+\documentclass[a4paper, 11pt]{article}
 
 \usepackage{fontspec}
-\setmainfont[ItalicFont = {Segoe UI Semilight Italic}]{Segoe UI}
+\setmainfont{Times New Roman}
 
 \usepackage[english]{babel}
 
 \input{settings/packages}
 \input{settings/macros}
+\input{settings/acronyms}
 
-\providecommand{\keywords}[1]{\textbf{Keywords:} #1}
+\providecommand{\keywords}[1]{\textbf{Keywords.} #1}
+
+\let\OLDthebibliography\thebibliography
+\renewcommand\thebibliography[1]{
+  \OLDthebibliography{#1}
+  \setlength{\parskip}{0pt}
+  \setlength{\itemsep}{0pt plus 0.3ex}
+}
 
 \usepackage{sectsty}
 
-\sectionfont{\fontsize{10pt}{0pt}\selectfont}
-\subsectionfont{\fontsize{10pt}{0pt}\selectfont}
-\subsubsectionfont{\fontsize{9pt}{0pt}\selectfont}
+\sectionfont{\fontsize{11pt}{0pt} \selectfont}
+\subsectionfont{\normalfont \fontsize{11pt}{0pt} \selectfont \MakeUppercase}
+\subsubsectionfont{\fontsize{9pt}{0pt} \selectfont}
 
+\usepackage[font=footnotesize]{caption}
 
 \usepackage[pass]{geometry}
-\renewcommand{\baselinestretch}{1.3}
-
-\usepackage{multicol}
-\setlength{\columnsep}{0.5cm}
+\renewcommand{\baselinestretch}{1}
 
 \usepackage[textwidth=4cm, textsize=small]{todonotes}
 
-\usepackage{capt-of}
-
-%\sloppy 
-
-%\hyphenation{}
-%\hyphenpenalty=10000
-%\exhyphenpenalty=10000
+\sloppy
 
 
 %-----------------------------------------------------------------------------%
 %                                     HEADER                                  %
 %-----------------------------------------------------------------------------%
-\title{\textbf{Title} \\ \Large Sub-Title}
+
+\makeatletter
+\renewcommand{\maketitle}{\bgroup\setlength{\parindent}{0pt}
+\begin{flushleft}
+  \@title
+  \vspace{5mm}
+  
+  \@author
+\end{flushleft}\egroup
+}
+\makeatother
+
+\title{\normalsize\MakeUppercase{\textbf{Title}} \\
+	   	\vspace{3mm}
+       	\normalsize\textit{Sub-Title}}
+
 
 \author[1]{author 1}
 \author[2]{author 2}
@@ -51,30 +66,24 @@
 
 \date{}
 
+
 %-----------------------------------------------------------------------------%
 %                                    DOCUMENT                                 %
 %-----------------------------------------------------------------------------%
 \begin{document}
 
-\newgeometry{top = 3.3cm, left = 3.8cm, right = 3.8cm, bottom = 3.5cm}
+\newgeometry{top = 5.5cm, left = 4.25cm, right = 4.25cm, bottom = 3.75cm}
 
 \maketitle
 
 \input{Sections/0_Abstract}
-
-
-\begin{multicols*}{2}
-
-\input{Sections/1_Section}
-\input{Sections/2_Section}
-%\input{Sections/0_NAME}
-%\input{Sections/0_NAME}
-%\input{Sections/0_NAME}
-%\input{Sections/0_Acknowledgments}
+\input{sections/1_Section}
+\input{sections/2_Section}
+%\input{sections/0_NAME}
+%\input{sections/0_NAME}
+%\input{sections/0_NAME}
 
 \bibliographystyle{apalike}
-\bibliography{Bibliography/Bibliography}
-
-\end{multicols*}
+\footnotesize{\bibliography{bibliography/bibliography}}
 
 \end{document}
