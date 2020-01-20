@@ -8,10 +8,10 @@ Here you may find my __LaTeX Templates__ for the following documents:
 
 # Build
 ```
-luatex
+lualatex
 bibtex
 makeindex
-luatex
-luatex
+lualatex
+lualatex
 pdf view
 ```
